@@ -52,6 +52,7 @@ Set the proper environment variables following the example ([.env.example](./.en
 ```python
 SECRET="MY_SECRET_KEY"
 DATABASE_URI='sqlite:///mydatabase.sqlite'
+BLOCKED_IPV4="your,blocked,addresses,here"
 ```
 
 This command starts a production server on `localhost:5000`:
