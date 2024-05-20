@@ -1,0 +1,61 @@
+{% extends 'layout.html' %} {% block slot %}
+<div class="flex flex-col p-2 w-[800px]">
+    <h1 class="text-4xl font-bold mb-4">Terms of service</h1>
+    <div class="text-sm">
+        <p class="mb-4">
+            <b class="text-cyan-700">vintran</b> is a free web file transfer tool,
+            <b>by using the service you agree to the following terms</b>:
+        </p>
+        <p>Throughout these terms:</p>
+        <ul>
+            <li>"We" or "us" refers to the service provider.</li>
+            <li>"You" refers to the endd-user utilizing our service.</li>
+        </ul>
+        <ul class="ul">
+            <li>
+                <b>Legal use</b>: You may only upload and transfer files that
+                are compliant with United States law. In the event that you
+                encounter illegal content on our platform, please do not report
+                or send it to us. Instead, inform the proper law enforcement
+                agency. If they deem it appropriate, they can contact us for the
+                removal of the content to
+                <a class="text-cyan-900" href="mailto:support@vintran.xyz"
+                    >support@vintran.xyz</a
+                >.
+            </li>
+            <li>
+                <b>Privacy</b>: When uploading a file, we store the file name,
+                IP address of the upload, the file hash and its upload date.
+                However, this information is deleted when the file expires. We
+                do not track any additional information about the files hosted
+                in the servive to respect the user's privacy.
+            </li>
+            <li>
+                <b>Copyrighted content</b>: If you're uploading copyrighted
+                material, make sure you have the proper permissions. If we
+                receive a DMCA notice regarding copyrighted content you've
+                uploaded, we will take action, so be mindful. If your
+                copyrighted content is being uploaded without permission, you
+                can submit a takedown notice to
+                <a class="text-cyan-900" href="mailto:support@vintran.xyz"
+                    >support@vintran.xyz</a
+                >
+                and we will handle the notice by deleting the infringing file
+                after receiving the notice compliant with the Copyright Act.
+            </li>
+        </ul>
+        <p>
+            If you have any questions or concerns, feel free to reach out to us
+            at
+            <a class="text-cyan-900" href="mailto:support@vintran.xyz"
+                >contact@vintran.xyz</a
+            >.
+        </p>
+    </div>
+</div>
+<style>
+    .ul > li {
+        margin: 12px 0;
+    }
+</style>
+{% endblock %}

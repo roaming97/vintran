@@ -1,0 +1,99 @@
+{% extends 'layout.html' %} {% block slot %}
+<form
+    class="flex flex-col justify-center w-96"
+    action="/"
+    method="post"
+    enctype="multipart/form-data"
+>
+    <h1 class="text-2xl mb-4">
+        <b class="text-cyan-700">vin</b>tage file
+        <b class="text-cyan-700">tran</b>sfer
+    </h1>
+    <p class="border-l-4 border-l-sky-600 pl-2 text-sm mb-2">
+        Max file size is 100MiB and each file expires after 24 hours.
+    </p>
+    {% if not file_id %} {{ form.file(class="p-4 mb-2 border border-dashed
+    border-gray-600", id="file-input") }} {% endif %}
+    <!-- 
+      <input class="p-4 mb-2 rounded-lg border border-dashed border-gray-600" type="file" name="file" />
+    -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    {% with msgs = get_flashed_messages(with_categories=True) %} {% if msgs %}
+    {% for category, message in msgs %} {% if category == "error" %}
+    <p class="border-l-4 border-l-red-600 pl-2 text-sm bg-red-100/50 mb-2">
+        {{ message }}
+    </p>
+    {% elif category == "warning" %}
+    <p
+        class="border-l-4 border-l-yellow-600 pl-2 text-sm bg-yellow-100/50 mb-2"
+    >
+        {{ message }}
+    </p>
+    {% elif category == "success" %}
+    <p
+        class="border-l-4 border-l-emerald-500 pl-2 text-sm bg-emerald-100/50 mb-2"
+    >
+        {{ message }}
+    </p>
+    {% else %}
+    <p class="border-l-4 border-l-zinc-600 pl-2 text-sm bg-zinc-100/50 mb-2">
+        {{ message }}
+    </p>
+    {% endif %} {% endfor %} {% endif %} {% endwith %} {% if file_id %}
+    <div class="p-2 my-2 border border-gray-500 bg-cyan-100 text-black">
+        https://vintran.xyz/{{file_id}}
+    </div>
+    {% else %}
+    <div class="flex items-center justify-between">
+        <button
+            class="w-full p-2 bg-cyan-500 text-white font-bold cursor-pointer"
+            type="submit"
+            onclick="spinner()"
+        >
+            {{ form.submit }}
+        </button>
+        <svg
+            class="w-10 h-10 mx-2 hidden"
+            id="loading-spinner"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"
+                class="fill-black dark:fill-white"
+                opacity=".25"
+            />
+            <path
+                d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z"
+                class="spinner fill-black dark:fill-white"
+            />
+        </svg>
+    </div>
+
+    <style>
+        .spinner {
+            transform-origin: center;
+            animation: spin 0.75s infinite linear;
+        }
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+    {% endif %}
+    <script>
+        // using legacy js for compatibility
+        function spinner() {
+            var file_input = document.getElementById("file-input");
+            var spinner = document.getElementById("loading-spinner");
+            if (file_input.files[0]) {
+                spinner.style.display = "block";
+            }
+        }
+    </script>
+</form>
+{% endblock %}

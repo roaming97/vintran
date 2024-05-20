@@ -1,0 +1,18 @@
+{% extends 'layout.html' %} {% block slot %}
+<div class="flex flex-col justify-center w-96">
+    <h1 class="text-2xl font-bold">{{ file.filename }}</h1>
+    <p class="text-gray-500 text-xs mb-2">{{ file.file_hash }}</p>
+    <p class="border-l-4 border-l-sky-600 pl-2 text-sm mb-4">
+        Expires in {{ until }}.
+    </p>
+    <form action="/{{ file.file_id }}" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <button
+            class="w-full p-2 bg-cyan-500 text-white font-bold cursor-pointer"
+            type="submit"
+        >
+            {{ form.submit }}
+        </button>
+    </form>
+</div>
+{% endblock %}

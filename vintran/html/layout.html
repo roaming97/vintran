@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block meta %} {% endblock %}
+    <title>vintran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      span {
+        text-align: center;
+        font-size: 10px;
+      }
+    </style>
+  </head>
+  <body
+    class="flex flex-col items-center justify-center bg-slate-300 w-screen h-screen overflow-x-hidden"
+  >
+    {% block slot %} {% endblock %}
+    <hr class="mt-4 mb-2 border-gray-600 w-1/4" />
+    <footer class="flex items-center gap-4">
+      {% if home %}
+      <span>
+        [
+        <a href="/tos">Terms of service</a>
+        ]
+      </span>
+      {% else %}
+      <span>
+        [
+        <a href="/">Upload file</a>
+        ]
+      </span>
+      {% endif %}
+      <span>
+        [
+        <a target="_blank" href="https://github.com/roaming97/vintran"
+          >Source code</a
+        >
+        ]
+      </span>
+    </footer>
+  </body>
+</html>

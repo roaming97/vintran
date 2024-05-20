@@ -1,0 +1,16 @@
+[project]
+requires-python = ">= 3.8"
+version = "0.1"
+description = "vintage file transfer"
+name = "vintran"
+dependencies = [
+    "flask",
+    "flask-apscheduler",
+    "flask-cors",
+    "flask-sqlalchemy",
+    "flask-wtf",
+]
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
