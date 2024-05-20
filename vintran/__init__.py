@@ -10,7 +10,8 @@ from flask_wtf import CSRFProtect
 
 db = SQLAlchemy()
 app = Flask(__name__, template_folder="./html")
-load_dotenv()
+
+load_dotenv(override=True)
 
 app.config["SECRET_KEY"] = os.getenv("SECRET")
 app.config["MAX_CONTENT_LENGTH"] = 100_000_000  # 100MiB
