@@ -1,4 +1,11 @@
-{% extends 'layout.html' %} {% block slot %}
+{% extends 'layout.html' %} {% block meta %} {% if file %}
+<meta name="theme-color" content="#0284c7" />
+<meta name="title" content="{{ file.filename }}" />
+<meta
+    name="description"
+    content="Download file {{ file.filename }} with vintran."
+/>
+{% endif %} {% endblock %} {% block slot %}
 <div class="flex flex-col justify-center w-96">
     <h1 class="text-2xl font-bold">{{ file.filename }}</h1>
     <p class="text-gray-500 text-xs mb-2">{{ file.file_hash }}</p>

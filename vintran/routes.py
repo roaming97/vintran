@@ -9,17 +9,21 @@ from string import ascii_letters, digits
 from flask import flash, redirect, render_template, request, send_file
 from werkzeug.utils import secure_filename
 
-from vintran import app, db
+from vintran import app, db, blocked_ips
 from vintran.forms import FileDownloadForm, FileUploadForm
 from vintran.models import VintranFile
 
 
 @app.route("/", methods=["GET", "POST"])
-def upload(file_id: str = None):
+def upload():
     form = FileUploadForm()
+    file_id: str = None
 
     if request.method == "POST":
         ipv4 = request.remote_addr
+        if ipv4 in blocked_ips:
+            flash("You are banned from using this service.")
+            return redirect(request.url)
         if "file" not in request.files:
             flash("No file part found in request.files", "warning")
             return redirect(request.url)

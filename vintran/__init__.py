@@ -19,6 +19,8 @@ app.config["MAX_CONTENT_LENGTH"] = 100_000_000  # 100MiB
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+blocked_ips = os.getenv("BLOCKED_IPV4").split(",")
+
 csrf = CSRFProtect(app=app)
 CORS(app=app)
 db.init_app(app=app)
